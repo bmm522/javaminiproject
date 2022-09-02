@@ -19,8 +19,8 @@ public class Menu {
 			int menuNumber = Integer.parseInt(sc.nextLine());
 			switch(menuNumber) {
 			case 1:
-//				mm.login();
-//				break;
+				mm.login();
+				break;
 			case 2:
 				mm.enroll();
 				break;

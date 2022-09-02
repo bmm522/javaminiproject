@@ -12,28 +12,34 @@ import java.util.ArrayList;
 import overall.member.model.vo.Member;
 
 public class MemberDAO {
-	File file = new File("c:\\jsp2\\workspace\\JavaHomework\\member.txt");
-	ArrayList<Member> arr = new ArrayList<Member>();
+	File file = new File("C:\\Users\\rlawl\\git\\repository\\JavaHomework\\member.txt");
+	
+	
 	public ArrayList<Member> selectAll(){
+		ArrayList<Member> arr = new ArrayList<Member>();
 		BufferedReader br;
 		String str;
-		Member m = new Member();
+		
+		int i = 0;
 		try {
 			br = new BufferedReader(new FileReader(file));
 			
 			try {
 				while((str = br.readLine())!=null) {
 					String[] sArr = str.split(" ");
+					Member m = new Member();
 					m.setId(sArr[0]);
 					m.setPwd(sArr[1]);
 					m.setName(sArr[2]);
 					m.setManager(Boolean.parseBoolean(sArr[3]));
-					arr.add(m);
+					arr.add(i,m);
+					i++;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
+			} return arr;
+		} 
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}		
 		return arr;
@@ -43,7 +49,7 @@ public class MemberDAO {
 	public void enroll(Member m) {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-			bw.write(m.toString());;	
+			bw.write(m.toString());	
 			bw.close();
 		
 		} catch (IOException e) {
