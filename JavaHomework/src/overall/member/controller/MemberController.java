@@ -39,4 +39,8 @@ public class MemberController {
 	public boolean checkId(String id) {
 		return md.checkId(id);
 	}
+
+	public void updateMember(Member updateMember) {
+		md.updateMember(updateMember);
+	}
 }

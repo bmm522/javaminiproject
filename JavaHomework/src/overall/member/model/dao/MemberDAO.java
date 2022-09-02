@@ -66,4 +66,34 @@ public class MemberDAO {
 		}
 		return true;
 	}
+
+
+	public void updateMember(Member updateMember) {
+		ArrayList<Member> mArr = selectAll();
+		
+		for(int i = 0 ; i < mArr.size() ; i ++) {
+			if(mArr.get(i).getId().equals(updateMember.getId())) {
+				mArr.remove(i);
+				mArr.add(updateMember);
+			}
+		}
+		
+		insertMember(mArr);
+		
+	}
+
+
+	private void insertMember(ArrayList<Member> mArr) {
+		try {
+			FileWriter fw = new FileWriter(file);
+			for(int i = 0 ; i < mArr.size() ; i ++) {
+				fw.write(mArr.get(i).toString());
+			}
+			fw.close();
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		
+	}
 }

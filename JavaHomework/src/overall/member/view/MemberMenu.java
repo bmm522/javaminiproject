@@ -117,9 +117,9 @@ public class MemberMenu {
 			case 1:
 				checkMyinfo();
 				break;
-//			case 2:
-//				updateMyInfo();
-//				break;
+			case 2:
+				updateMyInfo();
+				break;
 //			case 3:
 //				deleteMyInfo();
 //				break;
@@ -140,6 +140,8 @@ public class MemberMenu {
 		
 	}
 
+	
+
 	private void checkMyinfo() {
 		System.out.printf("ID : " +loginMember.getId() 
 		+ "\nPWD : " 
@@ -147,6 +149,40 @@ public class MemberMenu {
 		+loginMember.getPwd().substring(2,loginMember.getPwd().length()).replaceAll(".", "*")
 		+"\nNAME : " + loginMember.getName()+"\n");
 		
+	}
+	
+	private void updateMyInfo() {
+		while(true) {
+			checkMyinfo();
+			System.out.println("무엇을 변경하시겠습니까 ?");
+			System.out.println("1. 비밀번호 ");
+			System.out.println("2. 이름 ");
+			System.out.print("메뉴 번호 입력 : ");
+			int menuNumber = Integer.parseInt(sc.nextLine());
+			
+			switch(menuNumber) {
+			case 1:
+				System.out.print("변경 내용 : ");
+				String newPwd = sc.nextLine();
+				loginMember.setPwd(newPwd);
+				mc.updateMember(loginMember);
+				break;
+			case 2:
+				System.out.print("변경 내용 : ");
+				String newName = sc.nextLine();
+				loginMember.setName(newName);
+				mc.updateMember(loginMember);
+				break;
+			}
+			System.out.print("더 바꾸시겠습니까?(Y/N) : ");
+			String checkStr = sc.nextLine();
+			
+			if(checkStr.equals("Y") || checkStr.equals("y")) {
+				continue;
+			} else if (checkStr.equals("N") || checkStr.equals("n")){
+				return;
+			}
+		}
 	}
 
 	public void adminMenu() {
